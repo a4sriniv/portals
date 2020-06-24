@@ -169,6 +169,8 @@ Portals enable preloading, previewing and seamless transitions to another web pa
 
 Therefore the portal content cannot be focused and does not receive input events. Instead, the `<portal>` element itself is focusable (similar to a button or link) and eligible to receive input events (such as clicks) in the host document. For instance, the host document may handle this click event to animate and activate the `<portal>` element and navigate to the target document.
 
+Unlike regular navigations, when a portal is activated, any active pointers on the previous page are transferred to the newly activated page. The activated page receives a `touchstart`/`pointerdown` event for every currently active pointer, and `touchmove`/`pointermove` events for any subsequent pointer movement. The predecessor page will receive `touchcancel`/`pointercancel` events for pointers that were active. This enables touch gestures that trigger a portal activation to continue across portal activation. For example, if a portal is activated while a user is scrolling a page, the user can continue their scroll in the newly activated page without lifting their finger/stylus.
+
 TODO:
 
 - Did we end up adding a default click behavior like links?
